@@ -37,28 +37,9 @@ autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
 autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel
 autocmd BufNewFile *.cpp 0r ~/.vim/templates/cpp.skel
 
+"ubicacion de plugins
+so ~/.vim/plugins.vim
 
-call plug#begin('~"/.vim/plugged')
-
-Plug 'morhetz/gruvbox'
-"para completar cerrado de (),{},[]
-Plug 'jiangmiao/auto-pairs'
-
-"nerdtree
-Plug 'scrooloose/nerdtree'
-
-"tmux-navigator
-Plug 'christoomey/vim-tmux-navigator'
-
-"Autocompletado
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"lineas de indentacion
-Plug 'Yggdroot/indentLine'
-
-Plug 'vim-airline/vim-airline'
-
-call plug#end()
 
 set background=dark
 colorscheme gruvbox
@@ -67,9 +48,20 @@ let g:gruvbox_contrast_dark = 'medium'
 let NERDTreeQuitOnOpen=1 "cierra el nerdtree cuando entre a un archivo"
 
 let mapleader=" "
+
+"test
+nnoremap <Leader>t :TestNearest<CR>
+nnoremap <Leader>T :TestFile<CR>
+nnoremap <Leader>TT  :TestSuite<CR>
+
+"nerdtree
 nmap <Leader>nt :NERDTreeFind<CR>
+
+" guardado y cerrado de archivo
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
+
+"refresh coc
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " GoTo code navigation.
