@@ -32,14 +32,37 @@ set updatetime=300
 syntax on
 filetype plugin indent on
 
-"templates para los archivos de un tipo 
-autocmd BufNewFile *.java 0r ~/.vim/templates/java.skel
-autocmd BufNewFile *.html 0r ~/.vim/templates/html.skel
-autocmd BufNewFile *.cpp 0r ~/.vim/templates/cpp.skel
+"templates 
+let g:tmpl_search_paths = ['~/.vim/templates']
+let g:tmpl_author_name = 'Darwin Neira Carrasco'
+let g:tmpl_author_email = 'dneirac@unsa.edu.pe'
 
 "ubicacion de plugins
 so ~/.vim/plugins.vim
 
+"Lighlane
+let g:lightline = {
+      \ 'active': {
+      \   'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
+      \   'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo'], ['gitbranch']]
+      \ },
+      \ 'inactive': {
+      \   'left': [['inactive'], ['relativepath']],
+      \   'right': [['bufnum']]
+      \ },
+      \ 'component': {
+      \   'bufnum': '%n',
+      \   'inactive': 'inactive'
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \ },
+      \ 'colorscheme': 'gruvbox',
+      \ 'subseparator': {
+      \   'left': '',
+      \   'right': ''
+      \ }
+      \}
 
 set background=dark
 colorscheme gruvbox

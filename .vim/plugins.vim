@@ -9,6 +9,10 @@ Plug 'jiangmiao/auto-pairs'
 "nerdtree
 Plug 'scrooloose/nerdtree'
 
+"status bar
+Plug 'maximbaz/lightline-ale'
+Plug 'itchyny/lightline.vim'
+
 "tmux-navigator
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -22,4 +26,8 @@ Plug 'vim-airline/vim-airline'
 
 " test
 Plug 'janko-m/vim-test'
+
+"templates
+Plug 'tibabit/vim-templates'
+
 call plug#end()
