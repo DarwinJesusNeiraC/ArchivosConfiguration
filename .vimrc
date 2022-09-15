@@ -26,6 +26,8 @@ set cmdheight=2
 " delays and poor user experience.
 set updatetime=300
 
+"portapapeles desde todo lugar
+set clipboard=unnamed
 "este es un comentario"
 "Python
 "$sudo apt install vim-python-jedi
@@ -40,39 +42,22 @@ let g:tmpl_author_email = 'dneirac@unsa.edu.pe'
 "ubicacion de plugins
 so ~/.vim/plugins.vim
 
-"Lighlane
-let g:lightline = {
-      \ 'active': {
-      \   'left': [['mode', 'paste'], [], ['relativepath', 'modified']],
-      \   'right': [['kitestatus'], ['filetype', 'percent', 'lineinfo'], ['gitbranch']]
-      \ },
-      \ 'inactive': {
-      \   'left': [['inactive'], ['relativepath']],
-      \   'right': [['bufnum']]
-      \ },
-      \ 'component': {
-      \   'bufnum': '%n',
-      \   'inactive': 'inactive'
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \ },
-      \ 'colorscheme': 'gruvbox',
-      \ 'subseparator': {
-      \   'left': '',
-      \   'right': ''
-      \ }
-      \}
-
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'medium'
 
 let NERDTreeQuitOnOpen=1 "cierra el nerdtree cuando entre a un archivo"
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+let NERDTreeMapOpenInTab='\t'
 
 let mapleader=" "
 
 "test
+let test#python#runner='pytest'
 nnoremap <Leader>t :TestNearest<CR>
 nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT  :TestSuite<CR>
@@ -92,6 +77,14 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+""compitalcion y ejcucion"
+""java"
+autocmd filetype java nmap<F4> :w<bar>!clear && javac % && java -cp %:p:h %:t:r<CR>
+""c++"
+autocmd filetype cpp nmap <F4> :w<bar>!g++ -o %:r.darss % -std=c++17 -s && ./%:r.darss<CR>
+command IO :vertical split output.txt<bar>:new input.txt<bar>:vertical resize 40<CR>
+
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -129,7 +122,7 @@ endif
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
